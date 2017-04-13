@@ -1,5 +1,9 @@
 ##### How to use this repository
 
+This project works with NodeJS and Visual Code.
+- Download and install NodeJS - https://nodejs.org/en/download/ 
+- Download and install https://code.visualstudio.com/
+
 Clone this repo `https://github.com/Montana-Code-School/minesweeper-typescript.git` and run `npm test`
 
 Create the minefield application with Test Driven Development.
@@ -27,5 +31,5 @@ Some initial stories/tasks
 - I can flag an unexplored square in the minefield and then
     - display the number of unflagged mines remaining
     - print out the minefield and a ? will show on the flagged mine
-- With 3x3 minefield with one mine at 0,0, if I explore 2,2, it won't explode, and 0,0 will show as explored with a count of 0.
+- With 3x3 minefield with one mine at 0,0, if I explore 2,2, it won't explode, and 2,2 will show as explored with a count of 0.
 - As a player I can see a 'minefield' of different sizes on a webpage
