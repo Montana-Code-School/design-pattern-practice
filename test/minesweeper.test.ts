@@ -1,6 +1,6 @@
 import { expect } from "chai";
 import * as sinon from "sinon";
-import { Minefield } from "../src/Minefield";
+import Minefield from "../src/Minefield";
 
 
 describe("Minesweeper", function () {
@@ -16,19 +16,19 @@ describe("Minesweeper", function () {
   it("should print an unexplored minefield", function () {
     let minefield: Minefield = new Minefield(1, 1);    
     let print: string = minefield.print();
-    expect(print).to.be.equal("-/n");
+    expect(print).to.be.equal("-\n");
   });
 
   it("should print an unexplored minefield larger than 1, 1", function () {
     let minefield: Minefield = new Minefield(3, 3);    
     let print: string = minefield.print();
-    expect(print).to.be.equal("---/n---/n---/n");
+    expect(print).to.be.equal("---\n---\n---\n");
   });
 
  it("should print an unexplored minefield that is not a square", function () {
     let minefield: Minefield = new Minefield(3, 5);    
     let print: string = minefield.print();
-    expect(print).to.be.equal("---/n---/n---/n---/n---/n");
+    expect(print).to.be.equal("---\n---\n---\n---\n---\n");
   });
 
 it("should print an unexplored minefield with one bomb at a defined place", function () {
@@ -37,7 +37,7 @@ it("should print an unexplored minefield with one bomb at a defined place", func
     let bomby = 0;
     minefield.setBomb(bombx,bomby);   
     let print: string = minefield.print();
-    expect(print).to.be.equal("---/n---/n---/n");
+    expect(print).to.be.equal("---\n---\n---\n");
   });
 
   it("should count the number of bombs", function () {
@@ -53,7 +53,7 @@ it("should print an unexplored minefield with one bomb at a defined place", func
     expect(minefield.bombCount()).to.be.equal(1);
     minefield.setFlag(2, 2);
     expect(minefield.bombCount()).to.be.equal(0);
-    expect(minefield.print()).to.be.equal("---/n---/n--?/n");
+    expect(minefield.print()).to.be.equal("---\n---\n--?\n");
   });
 
   it("should set explored on space with no bomb", function () {
@@ -99,22 +99,84 @@ it("should print an unexplored minefield with one bomb at a defined place", func
     expect(minefield.getSmiley()).to.be.equal("winner");
   });
 
-it("should show 1 adjacent bomb when explored", function () {
-  let minefield: Minefield = new Minefield(2, 2);
-  minefield.setBomb(0, 0);
-  expect(minefield.bombCount()).to.be.equal(1);
-  minefield.explore(0, 1);
-  expect(minefield.field[0][1]).to.be.equal("1");
-  expect(minefield.getSmiley()).to.be.equal("play on!");
-});
+  it("should show 1 adjacent bomb when explored", function () {
+    let minefield: Minefield = new Minefield(2, 2);
+    minefield.setBomb(0, 0);
+    expect(minefield.bombCount()).to.be.equal(1);
+    minefield.explore(0, 1);
+    expect(minefield.field[0][1]).to.be.equal("1");
+    expect(minefield.getSmiley()).to.be.equal("play on!");
+  });
 
-it("should show 8 adjacent bomb when explored", function () {
-  let minefield: Minefield = new Minefield(3, 3);
-  minefield.setBomb(0, 0);
-  expect(minefield.bombCount()).to.be.equal(1);
-  minefield.explore(0, 1);
-  expect(minefield.field[0][1]).to.be.equal("1");
-  expect(minefield.getSmiley()).to.be.equal("play on!");
-});
+  it("should show 8 adjacent bomb when explored", function () {
+    let minefield: Minefield = new Minefield(3, 3);
+    minefield.setBomb(0, 0);
+    minefield.setBomb(0, 1);
+    minefield.setBomb(0, 2);
+    minefield.setBomb(1, 0);
+    minefield.setBomb(1, 2);
+    minefield.setBomb(2, 0);
+    minefield.setBomb(2, 1);
+    minefield.setBomb(2, 2);
+    expect(minefield.bombCount()).to.be.equal(8);
+    minefield.explore(1, 1);
+    expect(minefield.field[1][1]).to.be.equal("8");
+    expect(minefield.getSmiley()).to.be.equal("play on!");
+  });
 
+  it("should go boom on space with bomb when two bombs set", function () {
+    let minefield: Minefield = new Minefield(3, 3);
+    minefield.setBomb(1, 0);
+    minefield.setBomb(0, 0);
+    expect(minefield.bombCount()).to.be.equal(2);
+    minefield.explore(0, 0);
+    expect(minefield.bombCount()).to.be.equal(2);
+    expect(minefield.field[0][0]).to.be.equal("*");
+  });
+
+  it("should show 5 adjacent bomb when explored", function () {
+    let minefield: Minefield = new Minefield(3, 3);
+    minefield.setBomb(0, 0);
+    minefield.setBomb(0, 1);
+    minefield.setBomb(0, 2);
+    minefield.setBomb(1, 0);
+    minefield.setBomb(1, 2);
+    expect(minefield.bombCount()).to.be.equal(5);
+    minefield.explore(1, 1);
+    expect(minefield.field[1][1]).to.be.equal("5");
+    expect(minefield.getSmiley()).to.be.equal("play on!");
+  });
+
+  it("should show 1 adjacent bomb when explored", function () {
+    let minefield: Minefield = new Minefield(3, 3);
+    minefield.setBomb(0, 0);
+    minefield.setBomb(0, 1);
+    minefield.setBomb(0, 2);
+    minefield.setBomb(1, 0);
+    minefield.setBomb(1, 2);
+    expect(minefield.bombCount()).to.be.equal(5);
+    minefield.explore(2, 2);
+    expect(minefield.field[2][2]).to.be.equal("1");
+    expect(minefield.getSmiley()).to.be.equal("play on!");
+  });
+
+  it("should explode 5 when bomb explored", function () {
+    let minefield: Minefield = new Minefield(3, 3);
+    minefield.setBomb(0, 0);
+    minefield.setBomb(0, 1);
+    minefield.setBomb(0, 2);
+    minefield.setBomb(1, 0);
+    minefield.setBomb(1, 2);
+    expect(minefield.bombCount()).to.be.equal(5);
+    minefield.explore(0, 2);
+    expect(minefield.field[0][2]).to.be.equal("*");
+    expect(minefield.getSmiley()).to.be.equal("loser");
+    expect(minefield.print()).to.be.equal("***\n*-*\n---\n");
+  });
+
+  it("should add bombs in random spots", function () {
+    let minefield: Minefield = new Minefield(3, 3);
+    minefield.setRandomBombs(5);
+    expect(minefield.bombCount()).to.be.equal(5);
+  });
 });

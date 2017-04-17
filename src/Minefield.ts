@@ -1,4 +1,4 @@
-export class Minefield {
+export default class Minefield {
   width: number;
   height: number;
   field: string[][];
@@ -29,7 +29,7 @@ export class Minefield {
       for(let j = 0; j<this.width; j++) {
         row += this.field[i][j];
       }
-      row += "/n";
+      row += "\n";
     }
     return row;
   }
@@ -63,7 +63,7 @@ export class Minefield {
     let right = this.bombAt(x+1, y) ? 1 : 0;
     let lowerRight = this.bombAt(x+1, y+1) ? 1 : 0;
     let lower = this.bombAt(x, y+1) ? 1 : 0;
-    let lowerLeft = this.bombAt(x-1, y+1) ? 1 : 0;
+    let lowerLeft = this.bombAt(x-1, y-1) ? 1 : 0;
     let left = this.bombAt(x-1, y) ? 1 : 0;
     let upperLeft = this.bombAt(x-1, y+1) ? 1 : 0;
     let sumBombs = upper + upperRight + right + lowerRight + lower + lowerLeft + left + upperLeft;
@@ -76,24 +76,11 @@ export class Minefield {
   }
 
   bombAt(x: number, y: number): boolean {
-    for (let i=0; i<this.bombs.length; i++){
-      if (this.bombs[i][0] == x && this.bombs[i][1] == y) {
-        return true;
-      }
-      else { 
-        return false;
-      }      
-    }
-  }
-
-  bombAt2(x: number, y: number): boolean {
-    this.bombs.forEach(function(bomb) {
+    return this.bombs.some(function(bomb) {
       if (bomb[0] == x && bomb[1] == y) {
         return true;
-      } else {
-        return false}
+      } 
     });  
-    return false;
   }
 
   showAllBombs(){
@@ -120,5 +107,19 @@ export class Minefield {
       return "play on!";
     }
   }
+  
+  setRandomBombs(num){
+    let bombsPlaced = 0;
+    while (bombsPlaced < num) {
+      let x = Math.floor(Math.random()*this.height);
+      let y = Math.floor(Math.random()*this.width);
+      if (!this.bombAt(x, y)) {
+        this.setBomb(x, y);
+        bombsPlaced++;
+      } 
+    }  
+  }
+
+
 
 }

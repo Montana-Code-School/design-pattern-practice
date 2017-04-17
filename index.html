@@ -12,13 +12,20 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-12">
-        <h4>Minefield</h4>
-        <pre class="alert-danger" id="compilation">Loading...</pre>
+        <h4>Minefield</h4> 
+        <h4 id="status">Play Game</h4>
+        <h3 id="bombCount"> Bomb Count </h3>
+        <pre id="mine"/>
       </div>
     </div>
   </div>
-  <div id="minesweeper"></div>
+  <form>
+    <input id='x'></input>
+    <input id='y'></input>
+    <button id='explore' type="submit">Explore</button>
+    <button id='setFlag' type="submit">Set Flag</button>
+  </form>
   <script src="https://cdn.rawgit.com/jquery/jquery/2.1.4/dist/jquery.min.js"></script>
-  <script src="/dist/minesweeper.js"></script>
+  <script src="dist/index.js"></script>
 </body>
 </html>
