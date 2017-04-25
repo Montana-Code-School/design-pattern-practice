@@ -1,12 +1,12 @@
 ##### How to use this repository
 
 This project works with NodeJS and Visual Code.
-- Download and install NodeJS - https://nodejs.org/en/download/ 
+- Download and install NodeJS - https://nodejs.org/en/download/
 - Download and install https://code.visualstudio.com/
 
-Clone this repo `https://github.com/Montana-Code-School/minesweeper-typescript.git` and run `npm test`
+Clone this repo `https://github.com/Montana-Code-School/design-pattern-practice.git` and run `npm test`
 
-Create the minefield application with Test Driven Development.
+Practice design patterns with TDD.
 
 TDD is a loop RED->GREEN->REFACTOR->RED...
 
@@ -14,22 +14,26 @@ RED - Write a failing test (make sure it fails)
 GREEN - Make test pass in the simplest way possible
 REFACTOR - Clean up the code without changing how it works.
 
-Minesweeper is a simple game of finding and tagging mines.
-You can explore squares in the minefield.
-If you hit a mine, the game is over.
-If you hit a space next to one or more mines, that square will show the count of adjacent mines
-If you hit a space next to zero mines, all adjacent squares with zero mines will also be exposed, and then one adjacent square with 1 or more mines will show the number of adjacent squares.
-You can flag any unexplored square as having a mine.
-The number of unflagged mines shows up on the minefield display so you know how many more mines to find.
+DECORATOR
+We will make a User interface and decorate it to use for different circumstances.
 
-Some initial stories/tasks
-- I can create an unexplored minefield of x by y squres without any mines
-- If I have a minefield, I can get it's dimensions
-- I can print an empty minefield of x by y squares (a dash means it is unexplored)
-- I can create an unexplored minefield with one bomb at a defined coordinate.
-- I can print the number mines in a minefield
-- I can flag an unexplored square in the minefield and then
-    - display the number of unflagged mines remaining
-    - print out the minefield and a ? will show on the flagged mine
-- With 3x3 minefield with one mine at 0,0, if I explore 2,2, it won't explode, and 2,2 will show as explored with a count of 0.
-- As a player I can see a 'minefield' of different sizes on a webpage
+-Create user named John
+-John speaks a set of languages, including English and Spanish
+-users can not change their own name.
+
+-Create user Jane
+-Jane is an Employee; she has a start date of June 12, 2017.
+-Her boss will be User Lisa.
+
+BUILDER
+We will make a meal containing multiple entrees.
+
+-Create a steak dinner with 2 sides: mashed potatoes and green beans.
+-Create a chicken dinner with 3 sides: soup, garlic bread and a salad.
+
+OBSERVER
+We will make a table that communicates the size of a party to those watching.
+
+-Make an empty table.
+-Make waiter and owner observers.
+-Listen for when a party arrives and tell all observers.

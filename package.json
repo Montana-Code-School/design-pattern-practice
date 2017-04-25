@@ -1,7 +1,7 @@
 {
-  "name": "minesweeper-typescript",
+  "name": "design-pattern-practice",
   "version": "1.0.0",
-  "description": "A starting point for a minesweeper kata in typescript",
+  "description": "An intro to design patterns",
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",
@@ -18,14 +18,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Montana-Code-School/minesweeper-typescript.git"
+    "url": "git+https://github.com/Montana-Code-School/design-pattern-practice.git"
   },
   "author": "Montana Code School",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Montana-Code-School/minesweeper-typescript/issues"
+    "url": "https://github.com/Montana-Code-School/design-pattern-practice/issues"
   },
-  "homepage": "https://github.com/Montana-Code-School/minesweeper-typescript#readme",
+  "homepage": "https://github.com/Montana-Code-School/design-pattern-practice#readme",
   "devDependencies": {
     "@types/chai": "^3.4.34",
     "@types/mocha": "^2.2.32",
